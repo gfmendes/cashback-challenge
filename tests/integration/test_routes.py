@@ -13,52 +13,52 @@ class ResellerIntegrationTest(unittest.TestCase) :
 
   def test_add_new_reseller(self):
     #Given
-    payload = json.dumps({"cpf":"15138291498","name":"John","surname":"Galt","email":"snow@email.com","password":"12345678"})
+    payload = json.dumps({'cpf':'15138291498','name':'John','surname':'Galt','email':'snow@email.com','password':'12345678'})
     #When
     response = self._add_reseller_request(payload)
     #Then
     self.assertEqual(201, response.status_code)
-    self.assertEqual("15138291498", response.json['cpf'])
+    self.assertEqual('15138291498', response.json['cpf'])
 
   def test_add_existent_email_reseller(self):
     #Given
-    payload1 = json.dumps({"cpf":"15138291477", "name":"John", "surname":"Galt", "email":"snow@email.com", "password":"12345678"})
-    payload2 = json.dumps({"cpf":"15138291498", "name":"John", "surname":"Snow", "email":"snow@email.com", "password":"12345678"})
+    payload1 = json.dumps({'cpf':'15138291477', 'name':'John', 'surname':'Galt', 'email':'snow@email.com', 'password':'12345678'})
+    payload2 = json.dumps({'cpf':'15138291498', 'name':'John', 'surname':'Snow', 'email':'snow@email.com', 'password':'12345678'})
     #When
     self._add_reseller_request(payload1) #Adding first time
     response = response = self._add_reseller_request(payload2) #Adding second time
     #Then
     self.assertEqual(400, response.status_code)
-    self.assertEqual("email exists", response.json['error'])
+    self.assertEqual('email exists', response.json['error'])
 
   def test_add_existent_cpf_reseller(self):
     #Given
-    payload1 = json.dumps({"cpf":"15138291498","name":"John","surname":"Galt","email":"galt@email.com","password":"12345678"})
-    payload2 = json.dumps({"cpf":"15138291498","name":"John","surname":"Snow","email":"snow@email.com","password":"12345678"})
+    payload1 = json.dumps({'cpf':'15138291498','name':'John','surname':'Galt','email':'galt@email.com','password':'12345678'})
+    payload2 = json.dumps({'cpf':'15138291498','name':'John','surname':'Snow','email':'snow@email.com','password':'12345678'})
     #When
     self._add_reseller_request(payload1) #Adding first time
     response = response = self._add_reseller_request(payload2) #Adding second time
     #Then
     self.assertEqual(400, response.status_code)
-    self.assertEqual("cpf exists", response.json['error'])
+    self.assertEqual('cpf exists', response.json['error'])
 
   def test_get_cash_back_credit(self):
     #Given
-    payload_add_reseller = json.dumps({"cpf":"15138291498","name":"John","surname":"Galt","email":"snow@email.com","password":"12345678"})
-    payload_login = json.dumps({"email":"snow@email.com","password":"12345678"}) 
+    payload_add_reseller = json.dumps({'cpf':'15138291498','name':'John','surname':'Galt','email':'snow@email.com','password':'12345678'})
+    payload_login = json.dumps({'email':'snow@email.com','password':'12345678'}) 
     #When
     self._add_reseller_request(payload_add_reseller)
     access_tokens = self._login_request(payload_login)
     response = self._get_cashback_credit_request('15138291498', access_tokens)
     #Then
     self.assertEqual(200, response.status_code)
-    self.assertIn("credit", response.json.keys())
+    self.assertIn('credit', response.json.keys())
 
   def test_add_purchase(self):
     #Given
-    payload_add_reseller = json.dumps({"cpf":"15138291498","name":"John","surname":"Galt","email":"snow@email.com","password":"12345678"})
-    payload_add_purchase = json.dumps({"cpf":"15138291498", "amount":700.01, "code":999, "date":"2021-06-08"})
-    payload_login = json.dumps({"email":"snow@email.com","password":"12345678"}) 
+    payload_add_reseller = json.dumps({'cpf':'15138291498','name':'John','surname':'Galt','email':'snow@email.com','password':'12345678'})
+    payload_add_purchase = json.dumps({'cpf':'15138291498', 'amount':700.01, 'code':999, 'date':'2021-06-08'})
+    payload_login = json.dumps({'email':'snow@email.com','password':'12345678'}) 
     #When
     self._add_reseller_request(payload_add_reseller)
     access_tokens = self._login_request(payload_login)
@@ -68,9 +68,9 @@ class ResellerIntegrationTest(unittest.TestCase) :
     
   def test_add_and_list_purchases(self):
     #Given
-    payload_add_reseller = json.dumps({"cpf":"15138291498","name":"John","surname":"Galt","email":"snow@email.com","password":"12345678"})
-    payload_add_purchase = json.dumps({"cpf":"15138291498", "amount":700.01, "code":999, "date":"2020-06-08"})
-    payload_login = json.dumps({"email":"snow@email.com","password":"12345678"}) 
+    payload_add_reseller = json.dumps({'cpf':'15138291498','name':'John','surname':'Galt','email':'snow@email.com','password':'12345678'})
+    payload_add_purchase = json.dumps({'cpf':'15138291498', 'amount':700.01, 'code':999, 'date':'2020-06-08'})
+    payload_login = json.dumps({'email':'snow@email.com','password':'12345678'}) 
     #When
     self._add_reseller_request(payload_add_reseller)
     access_tokens = self._login_request(payload_login)
