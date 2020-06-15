@@ -10,16 +10,14 @@ rope = "*"
 [packages]
 flask = "*"
 flask-restful = "*"
-pytest = "*"
 mock = "*"
 setuptools = "*"
 wheel = "*"
 pymongo = "*"
-app = "*"
-dnspython = "*"
 marshmallow = "*"
 requests = "*"
 flask-jwt-extended = "*"
+dnspython = "*"
 
 [requires]
 python_version = "3.7"

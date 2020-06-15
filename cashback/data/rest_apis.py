@@ -1,6 +1,4 @@
-import requests
-import ast
-import logging
+import requests, ast
 
 class CashBackAPI():
   def get_cashback_amount(self, cpf):
