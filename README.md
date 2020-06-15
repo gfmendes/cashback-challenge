@@ -43,12 +43,12 @@
 > $env:FLASK_APP="cashback/app.py"  
 > flask run
 
-## Running all UT and IT tests:
+## Running all UT and IT tests cases:
 > python -m unittest discover
   
-## Run UT tests from services layer:
+## Runing UT tests from services layer:
 > python -m unittest tests/unit/services/test_purchase.py  
 > python -m unittest tests/unit/services/test_reseller.py  
 
-## Run IT tests:
+## Running IT tests:
 > python -m unittest tests/integration/test_routes.py   
