@@ -11,6 +11,7 @@ class PurchaseService():
   
   def add_purchase(self, purchase):
     self.log.info("add_purchase::Adding purchase=%s", purchase)
+    
     errors = self._validate_purchase(purchase)
     if errors : return errors
 
@@ -19,7 +20,7 @@ class PurchaseService():
     return PurchaseData().add_purchase(purchase)
     
   def _validate_purchase(self, purchase):
-    cpf_check = ResellerData().find_reseller({"cpf" : purchase['cpf']})
+    cpf_check = ResellerData().find_reseller({'cpf' : purchase['cpf']})
     self.log.info("_validate_purchase::find_reseller return=%s", cpf_check)
    
     if not cpf_check: 
@@ -28,8 +29,9 @@ class PurchaseService():
 
   def list_current_month_purchases(self, cpf):
     self.log.info("list_current_month_purchases::Listing monthly purchases of cpf=%s", cpf)
+    
     today = datetime.date.today()
-    purchases = PurchaseData().find_monthly_purchases({"cpf" : cpf, "month" : today.month, "year" : today.year})
+    purchases = PurchaseData().find_monthly_purchases({'cpf' : cpf, 'month' : today.month, 'year' : today.year})
     self.log.info("list_current_month_purchases::find_monthly_purchases return=%s", purchases)
     
     total_amount = sum(p["amount"] for p in purchases)

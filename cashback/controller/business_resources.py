@@ -8,7 +8,8 @@ class ResellerResource(Resource):
   def post(self):
     #data input validations
     errors = ResellerInputSchema().validate(request.get_json())
-    if errors: return str(errors), 400
+    if errors: 
+      return str(errors), 400
 
     result = ResellerService().add_reseller(request.get_json())
     return (result, 400) if 'error' in result.keys() else (result, 201)
@@ -23,7 +24,8 @@ class PurchaseResource(Resource):
   def post(self):
     #data input validations
     errors = PurchaseInputSchema().validate(request.get_json())
-    if errors: return str(errors), 400
+    if errors: 
+      return str(errors), 400
 
     result = PurchaseService().add_purchase(request.get_json())
     return (result, 400) if 'error' in result.keys() else (result, 201)
