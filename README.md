@@ -12,8 +12,8 @@
    <b>|--mongo_collections.py</b> - Contains logic to access MongoDb collections.
    <b>|--rest_api.py</b> - Contains logic to access external APIs endpoints.
 <b>|--services/</b>  
-   <b>|--purchase.py</b> - Address purchase business logic. Service layer implementation is independent of frameworks such flask, django, pymongo, etc.
-   <b>|--reseller.py</b> - Address reseller business logic. Service layer implementation is independent of frameworks such flask, django, pymongo, etc.
+   <b>|--purchase.py</b> - Address purchase business logic. Services are independent of frameworks such flask, django, pymongo, etc.
+   <b>|--reseller.py</b> - Address reseller business logic. Services are independent of frameworks such flask, django, pymongo, etc.
 <b>|--app.py</b> - Contains app configs and flask run function.
 <b>|--routes.py</b> - Define cachback app routes.  
 <b>tests/</b>  
@@ -43,12 +43,12 @@
 > $env:FLASK_APP="cashback/app.py"  
 > flask run
 
-## Running all UT and IT tests:
+## Running all UT and IT tests cases:
 > python -m unittest discover
   
-## Run UT tests from services layer:
+## Runing UT tests from services layer:
 > python -m unittest tests/unit/services/test_purchase.py  
 > python -m unittest tests/unit/services/test_reseller.py  
 
-## Run IT tests:
+## Running IT tests:
 > python -m unittest tests/integration/test_routes.py   
