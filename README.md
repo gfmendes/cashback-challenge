@@ -1,4 +1,4 @@
-# Proposed solution to Boticario's backend challenge.
+# Proposed solution to a backend challenge.
 
 ## Modules description:
 <pre>
